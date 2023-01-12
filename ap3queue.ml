@@ -1,8 +1,8 @@
 (*
- À compiler avec ocamlc -c ap3queue.ml
+ Compil with ocamlc -c ap3queue.ml
  *)
 
-(* Le type des files représentées par une paire de listes *)
+(*Queues Type with list*)
 type 'a t_queue = 'a list * 'a list
 ;;
 
@@ -10,7 +10,7 @@ let empty () : 'a t_queue = ([], [])
 ;;
 
 let isEmpty (f : ' a t_queue) = (f = ([], [])) 
-(* ou alors ([], _) on peut aussi mettre ça *)
+                               (* or ([], _) *)
 ;;
 
 let enter (x , q : 'a * 'a t_queue) : 'a t_queue =
@@ -25,10 +25,10 @@ let qhd (q : 'a t_queue) : 'a =
     let (l1, l2) = q
     in
       List.hd l1
-	(* quelle que soit la longueur 
-	   de la liste List.hd est en O(1)
-	   => qhd est en O(1) car les files 
-	   sont en forme normale
+	(* no matter the list length
+	   List.hd is O(1)
+	   => qhd is O(1) because queues
+	   are in NF
 	*)
 ;;
 
@@ -44,9 +44,9 @@ let qrest (q : 'a t_queue) : 'a t_queue =
 	(List.rev l2, [])
       else
 	(l1rest, l2)
-(* dans le cas le pire qrest en O(n) avec n longueur de l2
-   en moyenne qrest est en O(1) car pour 
-   une opération en O(n) on a n opération en O(1)
+(* in worst case qrest is O(n) with n the l2 length
+   on average qrest is O(1) because for
+   an O(n) operation we have n O(1) operations
 *)
 ;;
 
